@@ -8,7 +8,12 @@ function verifyTypeRun (prop) {
 
 function verifyFolder (prop) {
   if (typeof prop !== 'undefined') {
-    return `${prop}/` 
+    if (!fs.existsSync(`${prop}`)) {
+      fs.mkdirSync(`${prop}`, { recursive: true }, err => {
+        err && log(err)
+      })
+    }
+    return `${prop}` 
   } else {
     return ''
   }
@@ -18,14 +23,14 @@ function createManifestFile ({author, des, ver, data, dir}) {
   let scripts
   if (data.length === 1) {
     if (data[0] === 'Client.js') {
-      scripts = `client_script 'Client.js'`
+      scripts = `client_script 'client.js'`
     } else {
-      scripts = `server_script 'Server.js'`
+      scripts = `server_script 'server.js'`
     }
   } else {
     scripts = `
-  client_script 'Clients.js'
-  server_script 'Server.js'`
+  client_script 'client.js'
+  server_script 'server.js'`
   }
   fs.writeFile(`${dir}/fxmanifest.lua`, `
   -- Resource Metadata
@@ -44,7 +49,7 @@ function createManifestFile ({author, des, ver, data, dir}) {
 
 module.exports.create = () => {
   const props = process.argv.slice(2)
-  verifyTypeRun(props[0]) && fs.writeFile(`${verifyFolder(props[1])}${props[0]}.ts`, "", (err) => {
+  verifyTypeRun(props[0]) && fs.writeFile(`${verifyFolder(props[1])}/${props[0]}.ts`, "", (err) => {
     if (err) log(err)
   })
 }
