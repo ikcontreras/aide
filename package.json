@@ -1,0 +1,19 @@
+{
+  "name": "aide",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ikcontreras/aide.git"
+  },
+  "author": "Israel Contreras",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ikcontreras/aide/issues"
+  },
+  "homepage": "https://github.com/ikcontreras/aide#readme"
+}
