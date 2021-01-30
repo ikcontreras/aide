@@ -19,6 +19,11 @@
   "devDependencies": {},
   "dependencies": {},
   "bin": {
-    "create": "./bin/create"
+    "create": "./bin/create",
+    "fxmanifest": "./bin/manifest"
+  },
+  "fxmanimest": {
+    "author": "Sire",
+    "local_scripts": "./dist"
   }
 }
